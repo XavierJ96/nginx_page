@@ -10,3 +10,6 @@ fi
 echo "$(date +"%Y-%m-%d %H:%M:%S") Copy nginx.conf to Nginx configuration">> /var/log/cron.log
 sudo cp nginx/nginx.conf /etc/nginx/conf.d/nginx.conf
 sudo systemctl restart nginx
+
+echo "$(date +"%Y-%m-%d %H:%M:%S") Copy index.html to Nginx document root">> /var/log/cron.log
+sudo cp nginx/index.html /var/www/html/
