@@ -13,3 +13,4 @@ sudo systemctl restart nginx
 
 echo "$(date +"%Y-%m-%d %H:%M:%S") Copy index.html to Nginx document root">> /var/log/cron.log
 sudo cp nginx/index.html /var/www/html/
+sudo systemctl restart nginx
