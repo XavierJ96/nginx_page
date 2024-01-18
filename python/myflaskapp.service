@@ -1,0 +1,11 @@
+[Unit]
+Description=My Flask App
+After=network.target
+
+[Service]
+User=root
+WorkingDirectory=/home/ubuntu/nginx_page/python
+ExecStart=/home/ubuntu/nginx_page/python/venv/bin/python /home/ubuntu/nginx_page/python/app.py
+
+[Install]
+WantedBy=multi-user.target
