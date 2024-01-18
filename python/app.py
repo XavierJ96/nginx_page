@@ -35,7 +35,7 @@ def create_pressed_table():
 
 
 # Function to get the count from the "pressed" table
-def get_pressed_count():
+def get_pressed_count():#
     conn = None
     try:
         conn = psycopg2.connect(**db_params)
@@ -83,4 +83,4 @@ def increment_pressed():
 if __name__ == "__main__":
     # Create the "pressed" table if it doesn't exist
     create_pressed_table()
-    app.run(host="0.0.0.0", port=5000)  # Replace with your preferred host and port
+    app.run(host="127.0.0.2", port=5000)  # Replace with your preferred host and port
