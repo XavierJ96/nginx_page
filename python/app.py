@@ -7,6 +7,7 @@ app = Flask(__name__)
 db_params = {
     "dbname": "nginxDB",
     "user": "xavier",
+    "password": "pass",
     "host": "localhost",  # Change this if your database is on a different host
 }
 
