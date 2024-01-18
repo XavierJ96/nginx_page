@@ -15,3 +15,7 @@ sudo systemctl restart nginx
 echo "$(date +"%Y-%m-%d %H:%M:%S") Copy index.html to Nginx document root">> /var/log/cron.log
 sudo cp nginx/index.html /var/www/html/
 sudo systemctl restart nginx
+
+echo "$(date +"%Y-%m-%d %H:%M:%S") Run Flask app on port 5000">> /var/log/cron.log
+cd python
+sudo systemctl restart myflaskapp
