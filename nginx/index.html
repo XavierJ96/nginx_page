@@ -1,19 +1,47 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Welcome to My Website</title>
+    <title>Welcome to This Nginx Page</title>
     <style>
-      h1,
-      p,
-      h2 {
-        text-align: center;
+      #status-light {
+        width: 20px;
+        height: 20px;
+        border-radius: 50%;
+        background-color: red;
+        margin-top: 20px;
       }
     </style>
   </head>
   <body>
-    <h1>Hello, Xavier!!</h1>
-    <p>This is the default index page for your Nginx web server.</p>
-    <br />
-    <h2>Coming Soon</h2>
+    <h1>Welcome, press the button</h1>
+    <p>This is a simple landing page hosted by Nginx on your server.</p>
+    <button id="get-status-button">Press my button</button>
+    <p>Button Press Count: <span id="count">0</span></p>
+    <!-- Added this line -->
+    <div id="status-light"></div>
+    <script>
+      // JavaScript code to handle the button click and status update
+      document
+        .getElementById("get-status-button")
+        .addEventListener("click", () => {
+          // Send a request to increment the value
+          fetch("/api/pressed", { method: "GET" }) // Sending a GET request to the /presse
+            .then((response) => {
+              if (response.ok) {
+                return response.json();
+              }
+              throw new Error("Request failed.");
+            })
+            .then((data) => {
+              // Update the count display
+              document.getElementById("count").textContent = data.count;
+              // Log the response for debugging
+              console.log(data);
+            })
+            .catch((error) => {
+              console.error("Error:", error);
+            });
+        });
+    </script>
   </body>
 </html>
