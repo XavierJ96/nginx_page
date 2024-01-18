@@ -83,4 +83,4 @@ def increment_pressed():
 if __name__ == "__main__":
     # Create the "pressed" table if it doesn't exist
     create_pressed_table()
-    app.run(host="http://127.0.0.1", port=5000)  # Replace with your preferred host and port
+    app.run(host="http://127.0.0.2", port=5000)  # Replace with your preferred host and port
