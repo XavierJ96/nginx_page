@@ -1,0 +1,41 @@
+version: "3"
+
+services:
+  flask-app:
+    build:
+      context: ./python
+    ports:
+      - "5000:5000"
+    environment:
+      - DB_NAME=db
+      - DB_USER=user
+      - DB_PASSWORD=pass
+      - DB_HOST=postgres
+    depends_on:
+      - postgres
+    command: bash -c 'sleep 10 && python app.py'
+    networks:
+      - mynetwork
+
+  nginx:
+    build:
+      context: ./nginx
+      dockerfile: DockerfileDev
+    ports:
+      - "8080:80"
+    depends_on:
+      - flask-app
+    networks:
+      - mynetwork
+
+  postgres:
+    image: postgres:latest
+    environment:
+      POSTGRES_DB: dbname
+      POSTGRES_USER: dbuser
+      POSTGRES_PASSWORD: dbpassword
+    networks:
+      - mynetwork
+
+networks:
+  mynetwork:
