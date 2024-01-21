@@ -19,3 +19,10 @@ sudo systemctl restart nginx
 echo "$(date +"%Y-%m-%d %H:%M:%S") Run Flask app on port 5000">> /var/log/cron.log
 cd python
 sudo systemctl restart myflaskapp
+
+
+echo "docker-compose down" >> /var/log/cron.log
+docker-compose down >> /var/log/cron.log
+echo "docker-compose build" >> /var/log/cron.log
+docker-compose --build >> /var/log/cron.log
+docker-compose up -d
