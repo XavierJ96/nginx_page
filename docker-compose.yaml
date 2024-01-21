@@ -1,0 +1,46 @@
+version: "3"
+
+services:
+  postgres:
+    image: postgres:latest
+    environment:
+      POSTGRES_DB: dbname
+      POSTGRES_USER: youruser
+      POSTGRES_PASSWORD: yourpassword
+    networks:
+      - mynetwork
+
+  flask-app:
+    build:
+      context: ./python
+    ports:
+      - "5000:5000"
+    environment:
+      - DB_NAME=db
+      - DB_USER=user
+      - DB_PASSWORD=pass
+      - DB_HOST=postgres
+    depends_on:
+      - postgres
+    command: bash -c 'sleep 10 && python app.py'
+    networks:
+      - mynetwork
+
+  nginx:
+    build:
+      context: ./nginx
+      dockerfile: Dockerfile
+    ports:
+      - "80:80"
+      - "443:443"
+    depends_on:
+      - flask-app
+    networks:
+      - mynetwork
+    volumes:
+      - /etc/letsencrypt/live/ross.whatever.beer/fullchain.pem:/etc/letsencrypt/live/example
+      - /etc/letsencrypt/live/ross.whatever.beer/privkey.pem:/etc/letsencrypt/live/example.c
+      - /etc/ssl/certs/dhparam.pem:/etc/ssl/certs/dhparam.pem
+
+networks:
+  mynetwork:
