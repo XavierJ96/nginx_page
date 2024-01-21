@@ -22,7 +22,7 @@ services:
       context: ./nginx
       dockerfile: DockerfileDev
     ports:
-      - "8080:80"
+      - "8083:80"
     depends_on:
       - flask-app
     networks:
