@@ -38,8 +38,8 @@ services:
     networks:
       - mynetwork
     volumes:
-      - /etc/letsencrypt/live/ross.whatever.beer/fullchain.pem:/etc/letsencrypt/live/example
-      - /etc/letsencrypt/live/ross.whatever.beer/privkey.pem:/etc/letsencrypt/live/example.c
+      - /etc/letsencrypt/live/xavier.whatever.beer/fullchain.pem: /etc/letsencrypt/live/example.com/fullchain.pem;
+      - /etc/letsencrypt/live/xavier.whatever.beer/privkey.pem: /etc/letsencrypt/live/example.com/privkey.pem;
       - /etc/ssl/certs/dhparam.pem:/etc/ssl/certs/dhparam.pem
 
 networks:
